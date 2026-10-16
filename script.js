@@ -1,4 +1,5 @@
 const SITE_CONFIG = {
+  email: 'kgpvinas.chmsu@gmail.com',
   social: {
     github: 'https://github.com/kgpvinaschmsu-hub',
     linkedin: 'https://www.linkedin.com/in/katrina-grace-vinas-799b68389',
@@ -95,28 +96,7 @@ const revealObserver = new IntersectionObserver(entries => entries.forEach(entry
 }), {threshold:.1});
 document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
 
-async function copyText(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return;
-    } catch (error) {
-      // Continue to the browser-compatible fallback below.
-    }
-  }
-  const temporary = document.createElement('textarea');
-  temporary.value = text;
-  temporary.setAttribute('readonly', '');
-  temporary.style.position = 'fixed';
-  temporary.style.opacity = '0';
-  document.body.appendChild(temporary);
-  temporary.select();
-  const copied = document.execCommand('copy');
-  temporary.remove();
-  if (!copied) throw new Error('Clipboard permission was denied');
-}
-
-document.getElementById('contact-form').addEventListener('submit', async event => {
+document.getElementById('contact-form').addEventListener('submit', event => {
   event.preventDefault();
   const form = event.currentTarget;
   if (!form.reportValidity()) return;
@@ -124,22 +104,16 @@ document.getElementById('contact-form').addEventListener('submit', async event =
   const email = form.elements.email.value.trim();
   const type = form.elements['project-type'].value;
   const message = form.elements.message.value.trim();
-  const inquiry = `${type} inquiry\n\n${message}\n\nFrom: ${name}\nReply to: ${email}`;
+  const subject = encodeURIComponent(`${type} inquiry from ${name}`);
+  const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nReply to: ${email}`);
   const status = document.getElementById('form-status');
-  const output = document.getElementById('copy-output');
-  output.hidden = true;
-  try {
-    await copyText(inquiry);
-    status.textContent = 'Inquiry copied. Open LinkedIn and paste it into your message.';
-  } catch (error) {
-    output.value = inquiry;
-    output.hidden = false;
-    output.focus();
-    output.select();
-    status.textContent = 'Copy was blocked, so your prepared inquiry is selected below. Press Ctrl+C to copy it.';
-  }
+  status.textContent = 'Opening your email application with the inquiry prepared…';
+  window.location.href = `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
 });
 
+document.querySelectorAll('[data-email-link]').forEach(link => {
+  link.href = `mailto:${SITE_CONFIG.email}`;
+});
 document.querySelectorAll('[data-social]').forEach(link => {
   const url = SITE_CONFIG.social[link.dataset.social];
   if (url) link.href = url;
