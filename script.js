@@ -3,7 +3,7 @@ const SITE_CONFIG = {
   social: {
     github: 'https://github.com/kgpvinaschmsu-hub',
     linkedin: 'https://www.linkedin.com/in/katrina-grace-vinas-799b68389',
-    instagram: 'https://www.instagram.com/?hl=en'
+    instagram: 'https://www.instagram.com/kath_ryyna/'
   }
 };
 
