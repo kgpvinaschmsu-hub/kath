@@ -1,0 +1,38 @@
+.project-visual .project-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+
+.project-card:hover .project-cover {
+  transform: scale(1.035);
+}
+
+.project-visual:after {
+  z-index: 1;
+}
+
+.project-open {
+  z-index: 2;
+}
+
+.detail-visual {
+  padding: 0;
+  overflow: hidden;
+}
+
+.detail-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-visual .project-cover {
+    transition: none;
+  }
+}

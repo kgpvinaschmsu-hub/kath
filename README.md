@@ -31,5 +31,6 @@ The form opens the visitor's email application with a structured inquiry address
 - `styles.css` — warm visual system, responsive layout, and motion
 - `script.js` — filters, project drawer, navigation, contact email, and configuration
 - `demos/` — shared source code and interactive experiences for all six projects
+- `assets/project-images/` — six generated concept visuals used by the project cards and detail views
 - `assets/kath-profile.png` — warm-background hero portrait
 - `assets/creative-desk.png` — generated editorial desk image available for reuse

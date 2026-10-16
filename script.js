@@ -20,13 +20,12 @@ const grid = document.getElementById('project-grid');
 const overlay = document.getElementById('project-overlay');
 const content = document.getElementById('project-content');
 const panel = document.querySelector('.project-panel');
-const mockup = () => `<div class="mock-browser" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div><div class="mock-canvas"><div class="mock-copy"><div class="mock-kicker"></div><div class="mock-title"></div><div class="mock-title short"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-button"></div></div><div class="mock-image"></div></div></div>`;
 
 function renderProjects(filter = 'all') {
   const visible = filter === 'all' ? projects : projects.filter(project => project.category === filter);
   grid.innerHTML = visible.map((project, index) => `
     <article class="project-card reveal visible">
-      <div class="project-visual visual-${project.visual}">${mockup()}<button class="project-open" type="button" aria-label="View ${project.title} details" data-project="${project.id}">View ${project.title}</button></div>
+      <div class="project-visual visual-${project.visual}"><img class="project-cover" src="assets/project-images/${project.id}.jpg" alt="${project.title} concept visual" loading="lazy"><button class="project-open" type="button" aria-label="View ${project.title} details" data-project="${project.id}">View ${project.title}</button></div>
       <div class="project-info"><div><span class="project-meta">${project.type} · ${project.year}</span><h3>${project.title}</h3><p>${project.summary}</p></div><span class="project-number">0${index + 1}</span></div>
     </article>`).join('');
 }
@@ -36,7 +35,7 @@ function openProject(id) {
   if (!project) return;
   const demoUrl = `demos/?project=${project.id}`;
   const sourceUrl = 'https://github.com/kgpvinaschmsu-hub/kath/tree/main/demos';
-  content.innerHTML = `<div class="detail-kicker">${project.type} · ${project.year}</div><h2 id="detail-title">${project.title}</h2><p>${project.summary}</p><div class="detail-visual visual-${project.visual}">${mockup()}</div><h4>The idea</h4><p>${project.description}</p><h4>Highlights</h4><ul>${project.features.map(feature => `<li>${feature}</li>`).join('')}</ul><div class="detail-actions"><a class="button button-dark" href="${demoUrl}">Open coded demo <span>↗</span></a><a class="button button-outline" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">View source code <span>↗</span></a></div><a class="detail-contact" href="#contact" data-contact>Start a similar project</a>`;
+  content.innerHTML = `<div class="detail-kicker">${project.type} · ${project.year}</div><h2 id="detail-title">${project.title}</h2><p>${project.summary}</p><div class="detail-visual visual-${project.visual}"><img class="detail-cover" src="assets/project-images/${project.id}.jpg" alt="" aria-hidden="true"></div><h4>The idea</h4><p>${project.description}</p><h4>Highlights</h4><ul>${project.features.map(feature => `<li>${feature}</li>`).join('')}</ul><div class="detail-actions"><a class="button button-dark" href="${demoUrl}">Open coded demo <span>↗</span></a><a class="button button-outline" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">View source code <span>↗</span></a></div><a class="detail-contact" href="#contact" data-contact>Start a similar project</a>`;
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
