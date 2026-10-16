@@ -2,7 +2,7 @@
 
 A warm, editorial portfolio based on the supplied six-panel sketch. The site includes a responsive home page, about section, filterable projects, project detail drawer, process section, contact form, and footer.
 
-Each of the six portfolio concepts now includes a responsive interactive demo built with semantic HTML, CSS, and vanilla JavaScript. Open any project card and choose **Open coded demo** to try it.
+Each of the six portfolio concepts includes a responsive interactive demo built with semantic HTML, CSS, and vanilla JavaScript. Three demos highlight Kath's design and development work: Design System Lab, Frontend Playground, and Designer & Developer Portfolio. Open a project card and choose **Open coded demo** to try it.
 
 ## Preview locally
 

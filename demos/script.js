@@ -11,16 +11,16 @@ const projects = {
     title: 'Learning Hub', type: 'Web Design · Education', summary: 'A focused student dashboard for lessons, progress, and the next useful action.', mark: 'LH', nav: ['Overview','My courses','Schedule'], render: renderLearning
   },
   'creative-studio': {
-    title: 'Atelier Studio', type: 'UI/UX Design · Creative portfolio', summary: 'An editorial project library for a small multidisciplinary creative studio.', mark: 'AS', nav: ['Selected work','Services','Studio'], render: renderStudio
+    title: 'Design System Lab', type: 'UI/UX Design · Interactive design system', summary: 'Explore the colors, type, and reusable components behind a consistent interface.', mark: 'DS', nav: ['Foundations','Components','Guidelines'], render: renderDesignSystem
   },
   'taskflow': {
-    title: 'Gentle Focus', type: 'Product concept · Productivity', summary: 'A calm daily planner that makes priorities feel manageable rather than overwhelming.', mark: 'GF', nav: ['Today','Upcoming','Reflection'], render: renderTasks
+    title: 'Frontend Playground', type: 'Web development · Interactive UI', summary: 'Try responsive interface components and see how small front-end interactions work.', mark: '</>', nav: ['Components','Responsive','About'], render: renderPlayground
   },
   'booking-platform': {
     title: 'Gather Booking', type: 'Web Design · Scheduling', summary: 'A friendly appointment flow with clear dates, available times, and confirmation.', mark: 'GB', nav: ['Book a visit','My bookings','Help'], render: renderBooking
   },
   'brand-showcase': {
-    title: 'Mori Archive', type: 'Product concept · Digital archive', summary: 'A quiet, filterable archive for collecting visual projects and their stories.', mark: 'MA', nav: ['Archive','Collections','About'], render: renderArchive
+    title: 'Designer & Developer Portfolio', type: 'Portfolio design · Design + code', summary: 'A personal portfolio concept for presenting design work, development projects, and process in one place.', mark: 'KV', nav: ['Selected work','Process','Contact'], render: renderPersonalPortfolio
   }
 };
 
@@ -92,37 +92,76 @@ function renderLearning() {
   }));
 }
 
-function renderStudio() {
-  const work = [
-    ['Sora Identity','Branding','A tactile identity for a neighborhood café.'],['Field Notes','Editorial','A field guide built around observation.'],['Lumen House','Digital','A calm portfolio for an architecture studio.'],['Kindred Forms','Branding','Packaging with warmth and restraint.'],['Common Ground','Digital','A landing page for a community initiative.'],['Still / Moving','Editorial','A small publication about everyday motion.']
-  ];
-  workspace.innerHTML = `${heading('Selected work','A flexible studio archive for ideas across identity, editorial, and digital design.')}
-    <div class="filter-row" id="studio-filters"><button class="pill active" data-filter="All">All</button><button class="pill" data-filter="Branding">Branding</button><button class="pill" data-filter="Editorial">Editorial</button><button class="pill" data-filter="Digital">Digital</button></div>
-    <div class="gallery-grid" id="studio-grid">${work.map((item,index)=>`<article class="gallery-card" data-kind="${item[1]}"><div class="gallery-art">0${index+1}</div><div class="gallery-body"><h3>${item[0]}</h3><p>${item[2]}</p><span class="badge">${item[1]}</span></div></article>`).join('')}</div>`;
-  document.getElementById('studio-filters').addEventListener('click', event => {
-    const button = event.target.closest('button'); if (!button) return;
-    document.querySelectorAll('#studio-filters button').forEach(item => item.classList.toggle('active', item === button));
-    document.querySelectorAll('#studio-grid article').forEach(card => card.hidden = button.dataset.filter !== 'All' && card.dataset.kind !== button.dataset.filter);
-    showToast(`${button.dataset.filter} projects shown`);
+function renderDesignSystem() {
+  workspace.innerHTML = `${heading('Design foundations','A compact visual system for clear, consistent interface design.')}
+    <div class="panel"><div class="panel-title"><h3>Choose an accent palette</h3><span id="palette-name">Terracotta</span></div><div class="palette-options" role="group" aria-label="Accent color palette"><button class="palette-swatch active" type="button" data-color="#bd6547" data-name="Terracotta" aria-label="Terracotta palette"></button><button class="palette-swatch olive" type="button" data-color="#667153" data-name="Olive" aria-label="Olive palette"></button><button class="palette-swatch blue" type="button" data-color="#52728a" data-name="Blue" aria-label="Blue palette"></button></div></div>
+    <div class="design-tokens"><article class="token-card"><span>Type scale</span><strong class="token-heading">Aa</strong><small>Manrope · 400—800</small></article><article class="token-card"><span>Spacing</span><div class="spacing-bars"><i></i><i></i><i></i><i></i></div><small>8 · 16 · 24 · 32 px</small></article><article class="token-card"><span>Shape</span><button class="secondary" id="radius-toggle" type="button" aria-pressed="false">Rounded corners: on</button><small>Consistent, reusable rules</small></article></div>
+    <div class="panel component-preview" id="component-preview"><div class="panel-title"><h3>Component preview</h3><span>Live tokens</span></div><div class="preview-controls"><button class="lab-primary" type="button" id="sample-action">Primary action</button><button class="lab-secondary" type="button" id="sample-secondary">Secondary action</button><span id="component-message" role="status">Buttons use the selected palette.</span></div></div>`;
+  const root = document.getElementById('component-preview');
+  document.querySelectorAll('.palette-swatch').forEach(button => button.addEventListener('click', () => {
+    root.style.setProperty('--lab-accent', button.dataset.color);
+    document.getElementById('palette-name').textContent = button.dataset.name;
+    document.querySelectorAll('.palette-swatch').forEach(item => item.classList.toggle('active', item === button));
+    showToast(`${button.dataset.name} palette applied`);
+  }));
+  document.getElementById('radius-toggle').addEventListener('click', event => {
+    const rounded = event.currentTarget.getAttribute('aria-pressed') !== 'true';
+    event.currentTarget.setAttribute('aria-pressed', String(rounded));
+    event.currentTarget.textContent = `Rounded corners: ${rounded ? 'on' : 'off'}`;
+    root.classList.toggle('square-corners', !rounded);
+    showToast(`Corner style set to ${rounded ? 'rounded' : 'square'}`);
+  });
+  document.getElementById('sample-action').addEventListener('click', () => { document.getElementById('component-message').textContent = 'Primary action selected.'; });
+  document.getElementById('sample-secondary').addEventListener('click', () => { document.getElementById('component-message').textContent = 'Secondary action selected.'; });
+}
+
+function renderPlayground() {
+  workspace.innerHTML = `${heading('Build, test, refine','A small frontend playground showing responsive components and working interface states.')}
+    <div class="stat-grid"><div class="stat"><span>Components</span><strong>08</strong></div><div class="stat"><span>Breakpoints</span><strong>03</strong></div><div class="stat"><span>Current view</span><strong id="view-name">Desktop</strong></div></div>
+    <div class="panel"><div class="panel-title"><h3>Responsive preview</h3><div class="view-controls" role="group" aria-label="Preview width"><button class="pill active" type="button" data-view="Desktop">Desktop</button><button class="pill" type="button" data-view="Mobile">Mobile</button></div></div><div class="playground-frame" id="playground-frame"><div class="playground-card"><span class="playground-kicker">KATH · DESIGN + CODE</span><h3>Thoughtful interfaces,<br>made to work.</h3><p>Design details meet practical front-end development.</p><button class="lab-primary" type="button" id="playground-action">Try this button</button><span id="click-count" role="status">Clicked 0 times</span></div></div></div>
+    <div class="panel"><div class="panel-title"><h3>What this demo shows</h3><span>HTML · CSS · JavaScript</span></div><div class="list"><div class="list-item"><span class="list-icon">01</span><div><strong>Responsive layout</strong><small>Switch the preview between desktop and mobile widths.</small></div></div><div class="list-item"><span class="list-icon">02</span><div><strong>Interactive state</strong><small>Click the sample action to update its live state.</small></div></div></div></div>`;
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item === button));
+    document.getElementById('playground-frame').classList.toggle('mobile', button.dataset.view === 'Mobile');
+    document.getElementById('view-name').textContent = button.dataset.view;
+  }));
+  let clicks = 0;
+  document.getElementById('playground-action').addEventListener('click', () => {
+    clicks += 1;
+    document.getElementById('click-count').textContent = `Clicked ${clicks} time${clicks === 1 ? '' : 's'}`;
   });
 }
 
-function renderTasks() {
-  let tasks = [
-    {text:'Review portfolio content',done:true},{text:'Refine mobile navigation',done:false},{text:'Write project case study',done:false}
+function renderPersonalPortfolio() {
+  const work = [
+    ['Campus Connect','Design','A student-focused dashboard concept with a clearer route to key campus services.','UI/UX DESIGN'],
+    ['Responsive Landing Page','Development','A responsive web page built with reusable sections and accessible navigation.','HTML · CSS · JS'],
+    ['Community Report Flow','Design','A guided reporting experience that keeps important steps easy to follow.','PRODUCT DESIGN'],
+    ['Portfolio Components','Development','A small collection of reusable interface patterns for a personal website.','FRONTEND'],
+    ['Course Progress UI','Design','A calm learning interface that makes progress and next steps easy to scan.','WEB DESIGN'],
+    ['Interactive Project Cards','Development','Filterable portfolio cards with keyboard-friendly detail views.','JAVASCRIPT']
   ];
-  workspace.innerHTML = `${heading('A gentle plan for today','Choose a few meaningful priorities. Everything else can wait.')}
-    <div class="stat-grid"><div class="stat"><span>Today</span><strong id="task-total">3</strong></div><div class="stat"><span>Completed</span><strong id="task-done">1</strong></div><div class="stat"><span>Focus</span><strong>Calm</strong></div></div>
-    <div class="panel"><div class="panel-title"><h3>Today’s priorities</h3><span>Keep it light</span></div><form class="task-form" id="task-form"><input id="new-task" placeholder="Add a small next step…" required><button class="primary" type="submit">Add task</button></form><div id="task-list"></div></div>`;
-  const draw = () => {
-    document.getElementById('task-list').innerHTML = tasks.map((task,index)=>`<div class="task-row ${task.done?'done':''}"><input id="task-${index}" data-index="${index}" type="checkbox" ${task.done?'checked':''}><label for="task-${index}">${escapeHtml(task.text)}</label><button type="button" data-remove="${index}" aria-label="Remove ${escapeHtml(task.text)}">×</button></div>`).join('');
-    document.getElementById('task-total').textContent = tasks.length;
-    document.getElementById('task-done').textContent = tasks.filter(task=>task.done).length;
-  };
-  draw();
-  document.getElementById('task-form').addEventListener('submit', event => {event.preventDefault();tasks.push({text:document.getElementById('new-task').value,done:false});event.currentTarget.reset();draw();showToast('Task added');});
-  document.getElementById('task-list').addEventListener('change', event => {if(!event.target.matches('input'))return;tasks[event.target.dataset.index].done=event.target.checked;draw();});
-  document.getElementById('task-list').addEventListener('click', event => {const button=event.target.closest('[data-remove]');if(!button)return;tasks.splice(button.dataset.remove,1);draw();showToast('Task removed');});
+  workspace.innerHTML = `${heading('Kath Vinas','Designer and developer creating warm, clear, and useful digital experiences.')}
+    <div class="portfolio-intro"><div><span class="eyebrow">SELECTED WORK · 2026</span><h3>Design with care.<br>Build with purpose.</h3></div><a class="lab-primary portfolio-contact" href="mailto:kgpvinas.chmsu@gmail.com">Email Kath</a></div>
+    <div class="filter-row" id="portfolio-filters"><button class="pill active" type="button" data-filter="All">All work</button><button class="pill" type="button" data-filter="Design">Design</button><button class="pill" type="button" data-filter="Development">Development</button></div>
+    <div class="gallery-grid portfolio-grid" id="portfolio-grid">${work.map((item,index)=>`<button class="gallery-card portfolio-card" type="button" data-kind="${item[1]}" data-index="${index}"><span class="gallery-art portfolio-art">0${index+1}<small>${item[3]}</small></span><span class="gallery-body"><strong>${item[0]}</strong><span>${item[2]}</span><em>View concept ↗</em></span></button>`).join('')}</div>
+    <div class="portfolio-modal" id="portfolio-modal" hidden><article class="portfolio-dialog" role="dialog" aria-modal="true" aria-labelledby="portfolio-title"><button type="button" aria-label="Close project">×</button><span class="eyebrow" id="portfolio-kind"></span><h3 id="portfolio-title"></h3><p id="portfolio-copy"></p></article></div>`;
+  document.getElementById('portfolio-filters').addEventListener('click', event => {
+    const button = event.target.closest('button'); if (!button) return;
+    document.querySelectorAll('#portfolio-filters button').forEach(item => item.classList.toggle('active', item === button));
+    document.querySelectorAll('.portfolio-card').forEach(card => { card.hidden = button.dataset.filter !== 'All' && card.dataset.kind !== button.dataset.filter; });
+  });
+  const modal = document.getElementById('portfolio-modal');
+  document.getElementById('portfolio-grid').addEventListener('click', event => {
+    const card = event.target.closest('.portfolio-card'); if (!card) return;
+    const item = work[Number(card.dataset.index)];
+    document.getElementById('portfolio-kind').textContent = item[3];
+    document.getElementById('portfolio-title').textContent = item[0];
+    document.getElementById('portfolio-copy').textContent = item[2];
+    modal.hidden = false;
+  });
+  modal.addEventListener('click', event => { if (event.target === modal || event.target.closest('.portfolio-dialog>button')) modal.hidden = true; });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') modal.hidden = true; });
 }
 
 function renderBooking() {
