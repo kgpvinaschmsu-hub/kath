@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kath is a designer and front-end developer crafting warm, thoughtful digital experiences.">
+  <meta name="theme-color" content="#f4eee5">
+  <title>Kath — Designer & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header" id="top">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Kath, home"><span class="brand-orbit">K</span><span>Kath.</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="#home" data-nav="home" class="active">Home</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#projects" data-nav="projects">Projects</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="#contact">Let’s work together <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section shell" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Designer & front-end developer</p>
+        <h1>Thoughtful design,<br><em>warmly made.</em></h1>
+        <p class="hero-intro">Hi, I’m Kath. I turn ideas into clear, useful, and memorable digital experiences—one considered detail at a time.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#projects">View selected work <span>↗</span></a>
+          <a class="text-button" href="#about">A little about me <span>↓</span></a>
+        </div>
+        <div class="hero-note"><span class="available-dot"></span> Available for freelance projects</div>
+      </div>
+      <div class="hero-media reveal" aria-label="Portrait of Kath">
+        <div class="image-frame"><img src="assets/kath-profile.png" alt="Portrait of Kath, designer and front-end developer" width="1254" height="1254"></div>
+        <div class="floating-card card-top"><span>Currently exploring</span><strong>Useful ideas + lovely details</strong></div>
+        <div class="floating-card card-bottom"><span>Based in</span><strong>Philippines · Available worldwide</strong></div>
+        <span class="scribble" aria-hidden="true">✦</span>
+      </div>
+      <div class="hero-index" aria-hidden="true"><span>01</span><i></i><span>04</span></div>
+    </section>
+
+    <section class="marquee" aria-label="Areas of expertise">
+      <div class="marquee-track"><span>UI/UX Design</span><i>✦</i><span>Front-end Development</span><i>✦</i><span>Responsive Design</span><i>✦</i><span>Creative Direction</span><i>✦</i><span>UI/UX Design</span><i>✦</i><span>Front-end Development</span><i>✦</i></div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="shell about-grid">
+        <div class="section-label reveal"><span>02</span><p>About me</p></div>
+        <div class="about-heading reveal"><h2>I care about the little things that make a big <em>difference.</em></h2></div>
+        <div class="about-body reveal">
+          <p class="lead">I’m a curious designer and developer who enjoys making digital products feel natural, intuitive, and full of character.</p>
+          <p>I bring design thinking and front-end craft together—moving from loose sketches to polished, responsive experiences. My process stays collaborative, practical, and rooted in the people who will use what I build.</p>
+          <a class="underlined-link" href="#contact">Let’s create something together <span>↗</span></a>
+        </div>
+        <div class="capabilities reveal">
+          <div><span>01</span><h3>Design</h3><p>UI/UX, visual systems, wireframes, prototypes</p></div>
+          <div><span>02</span><h3>Development</h3><p>HTML, CSS, JavaScript, responsive websites</p></div>
+          <div><span>03</span><h3>Approach</h3><p>Clear thinking, careful craft, continuous learning</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section shell" id="projects">
+      <div class="projects-heading reveal">
+        <div class="section-label"><span>03</span><p>Selected projects</p></div>
+        <h2>A few things I’ve been<br><em>bringing to life.</em></h2>
+        <p>Selected interface explorations, web concepts, and thoughtful digital solutions.</p>
+      </div>
+      <div class="filters reveal" aria-label="Filter projects">
+        <button type="button" class="filter active" data-filter="all" aria-pressed="true">All <span>06</span></button>
+        <button type="button" class="filter" data-filter="web" aria-pressed="false">Web</button>
+        <button type="button" class="filter" data-filter="ui" aria-pressed="false">UI/UX</button>
+        <button type="button" class="filter" data-filter="concept" aria-pressed="false">Concepts</button>
+      </div>
+      <div class="project-grid" id="project-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="process section">
+      <div class="shell process-grid">
+        <div class="section-label light reveal"><span>04</span><p>How I work</p></div>
+        <div class="process-copy reveal"><h2>Simple process.<br><em>Thoughtful results.</em></h2><p>I keep the work clear and collaborative from first question to final polish.</p></div>
+        <ol class="process-list reveal">
+          <li><span>01</span><div><h3>Discover</h3><p>Understand the goal, the audience, and what success should feel like.</p></div></li>
+          <li><span>02</span><div><h3>Shape</h3><p>Explore structure, content, and a visual direction that fits.</p></div></li>
+          <li><span>03</span><div><h3>Build</h3><p>Bring it together with responsive code and careful interaction details.</p></div></li>
+          <li><span>04</span><div><h3>Refine</h3><p>Test, listen, polish, and make every important moment feel right.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="shell contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow"><span></span> Have an idea in mind?</p>
+          <h2>Let’s make it<br><em>something special.</em></h2>
+          <p>Tell me a little about your project, your idea, or even the problem you’re trying to solve. I’d love to hear it.</p>
+          <div class="contact-meta"><small>Email me directly</small><a id="email-link" href="mailto:hello@example.com">hello@example.com</a></div>
+          <div class="social-row" aria-label="Social links">
+            <a data-social="github" href="https://github.com/kgpvinaschmsu-hub/kath" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+            <a data-social="linkedin" href="https://www.linkedin.com/in/katrina-grace-vinas-799b68389" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">IN</a>
+            <a data-social="instagram" href="https://www.instagram.com/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contact-form">
+          <div class="field-row"><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="Jane Smith" required maxlength="100"></div>
+          <div class="field-row"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="jane@example.com" required maxlength="150"></div>
+          <div class="field-row"><label for="project-type">What can I help with?</label><select id="project-type" name="project-type"><option>Website design</option><option>UI/UX design</option><option>Front-end development</option><option>Something else</option></select></div>
+          <div class="field-row"><label for="message">Tell me about it</label><textarea id="message" name="message" rows="4" placeholder="A few details about your idea…" required maxlength="3000"></textarea></div>
+          <button class="button button-dark" type="submit">Open email to send <span>↗</span></button>
+          <p class="form-note">This opens your email app. Nothing is stored on the website.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-main">
+      <div><a class="brand footer-brand" href="#home"><span class="brand-orbit">K</span><span>Kath.</span></a><p>Designing with care. Building with purpose.</p></div>
+      <div class="footer-nav"><div><small>Explore</small><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div><div><small>Connect</small><a data-social="github" href="https://github.com/kgpvinaschmsu-hub/kath" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a data-social="linkedin" href="https://www.linkedin.com/in/katrina-grace-vinas-799b68389" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a data-social="instagram" href="https://www.instagram.com/?hl=en" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="mailto:hello@example.com">Email ↗</a></div></div>
+    </div>
+    <div class="shell footer-bottom"><span>© <span id="year"></span> Kath. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+  </footer>
+
+  <div class="project-overlay" id="project-overlay" aria-hidden="true">
+    <div class="overlay-scrim" data-close></div>
+    <article class="project-panel" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1"><button class="close-project" type="button" data-close aria-label="Close project">×</button><div id="project-content"></div></article>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
