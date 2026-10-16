@@ -21,7 +21,7 @@ Kath's warm-background profile portrait is stored at `assets/kath-profile.png` a
 
 ## Contact form
 
-The form opens the visitor's email application using `mailto:`; it does not store or transmit data through a backend. Connect a form service or server endpoint if direct website delivery is needed.
+The form prepares and copies a structured inquiry that visitors can paste into a LinkedIn message. It does not store or transmit personal data through a backend. Connect a form service or server endpoint later if direct website delivery is needed.
 
 ## Main files
 
