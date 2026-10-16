@@ -2,6 +2,8 @@
 
 A warm, editorial portfolio based on the supplied six-panel sketch. The site includes a responsive home page, about section, filterable projects, project detail drawer, process section, contact form, and footer.
 
+Each of the six portfolio concepts now includes a responsive interactive demo built with semantic HTML, CSS, and vanilla JavaScript. Open any project card and choose **Open coded demo** to try it.
+
 ## Preview locally
 
 Open `index.html` directly or serve this folder with VS Code Live Server. No build step or package install is required.
@@ -28,5 +30,6 @@ The form opens the visitor's email application with a structured inquiry address
 - `index.html` — semantic page structure and content
 - `styles.css` — warm visual system, responsive layout, and motion
 - `script.js` — filters, project drawer, navigation, contact email, and configuration
+- `demos/` — shared source code and interactive experiences for all six projects
 - `assets/kath-profile.png` — warm-background hero portrait
 - `assets/creative-desk.png` — generated editorial desk image available for reuse

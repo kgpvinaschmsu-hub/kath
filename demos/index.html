@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive coded concept from Kath's design and development portfolio.">
+  <meta name="theme-color" content="#f4eee5">
+  <title>Interactive Project Demo — Kath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="demo-header">
+    <a class="brand" href="../"><span>K</span>Kath.</a>
+    <span class="concept-label">Interactive concept demo</span>
+    <a class="back-link" href="../#projects">← Back to portfolio</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <p class="eyebrow" id="project-type">Project demo</p>
+        <h1 id="project-title">Loading project…</h1>
+      </div>
+      <p id="project-summary">A browser-based concept created with HTML, CSS, and JavaScript.</p>
+    </section>
+
+    <section class="demo-shell" aria-label="Interactive project demo">
+      <aside class="demo-sidebar">
+        <div class="mini-brand" id="mini-brand">K</div>
+        <nav id="demo-nav" aria-label="Demo navigation"></nav>
+        <span class="demo-year">Kath · 2026</span>
+      </aside>
+      <div class="demo-workspace" id="demo-workspace" aria-live="polite"></div>
+    </section>
+
+    <section class="demo-footer">
+      <div><span>Built with</span><strong>Semantic HTML · Responsive CSS · Vanilla JavaScript</strong></div>
+      <a href="https://github.com/kgpvinaschmsu-hub/kath/tree/main/demos" target="_blank" rel="noopener noreferrer">View source code ↗</a>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

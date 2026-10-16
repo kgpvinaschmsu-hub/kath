@@ -34,7 +34,9 @@ function renderProjects(filter = 'all') {
 function openProject(id) {
   const project = projects.find(item => item.id === id);
   if (!project) return;
-  content.innerHTML = `<div class="detail-kicker">${project.type} · ${project.year}</div><h2 id="detail-title">${project.title}</h2><p>${project.summary}</p><div class="detail-visual visual-${project.visual}">${mockup()}</div><h4>The idea</h4><p>${project.description}</p><h4>Highlights</h4><ul>${project.features.map(feature => `<li>${feature}</li>`).join('')}</ul><a class="button button-dark" href="#contact" data-contact>Start a similar project <span>↗</span></a>`;
+  const demoUrl = `demos/?project=${project.id}`;
+  const sourceUrl = 'https://github.com/kgpvinaschmsu-hub/kath/tree/main/demos';
+  content.innerHTML = `<div class="detail-kicker">${project.type} · ${project.year}</div><h2 id="detail-title">${project.title}</h2><p>${project.summary}</p><div class="detail-visual visual-${project.visual}">${mockup()}</div><h4>The idea</h4><p>${project.description}</p><h4>Highlights</h4><ul>${project.features.map(feature => `<li>${feature}</li>`).join('')}</ul><div class="detail-actions"><a class="button button-dark" href="${demoUrl}">Open coded demo <span>↗</span></a><a class="button button-outline" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">View source code <span>↗</span></a></div><a class="detail-contact" href="#contact" data-contact>Start a similar project</a>`;
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
